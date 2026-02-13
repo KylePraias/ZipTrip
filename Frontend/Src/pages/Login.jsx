@@ -3,6 +3,8 @@ import React from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import ZiptripLogo from "../assets/ZiptripLogo.png";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,10 +24,11 @@ const Login = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-amber-50 px-6">
       {/* Logo */}
       <img
-        src="https://media.discordapp.net/attachments/1368024001233948735/1368089991980384326/ChatGPT_Image_May_3_2025_01_00_55_AM_1.png?ex=68179d57&is=68164bd7&hm=2c134e0eb12c8fee825c778abe79e4f2cf833d9ff257ff05d1b8fc79f2cd745a&=&format=webp&quality=lossless&width=1900&height=1900"
+        src={ZiptripLogo}
         alt="ZipTrip Logo"
         className="w-36 h-36 rounded-full mb-4 object-cover"
       />
+
 
       {/* App name */}
       <h1 className="text-3xl font-extrabold text-gray-800 mb-8">ZipTrip</h1>
