@@ -29,7 +29,7 @@ export default function CreateTrip() {
     const loadGoogleMapsScript = () => {
       return new Promise((resolve, reject) => {
         if (window.google && window.google.maps) {
-          resolve(); // Already loaded
+          resolve(); 
           return;
         }
   
@@ -47,7 +47,7 @@ export default function CreateTrip() {
       });
     };
   
-    loadGoogleMapsScript(import.meta.env.VITE_GOOGLE_MAPS_API_KEY)  // Use your API key here
+    loadGoogleMapsScript(import.meta.env.VITE_GOOGLE_MAPS_API_KEY) 
     .then(() => {
       const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
         types: ['(cities)'],
