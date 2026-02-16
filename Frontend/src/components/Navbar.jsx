@@ -1,42 +1,59 @@
-// src/components/Navbar.jsx
 import { Link } from 'react-router-dom';
-import AuthButton from './AuthButton';
+import { useAuth } from '../context/AuthContext';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase';
 
 export default function Navbar() {
+  const { user } = useAuth();
+
+  const handleLogout = () => {
+    signOut(auth).catch(err => console.error("Logout error:", err));
+  };
+
   return (
-    <nav className="bg-amber-50 drop-shadow-2xl p-4 flex items-center">
-      {/* Left side: Logo */}
-      <h1 className="text-xl font-semibold text-blue-600">ZipTrip</h1>
+    <nav className="bg-white shadow-sm border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2">
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              ZipTrip
+            </span>
+          </Link>
 
-      {/* Right side: Links and logout */}
-      <div className="flex items-center ml-auto">
-        {/* Navigation Links */}
-        <div className="flex space-x-4 mr-12"> {/* ⬅️ Increased margin here */}
-          <Link to="/dashboard" className="text-gray-700 hover:text-blue-500">Dashboard</Link>
-          <Link to="/create" className="text-gray-700 hover:text-blue-500">Create Trip</Link>
+          {/* Navigation Links */}
+          <div className="flex items-center gap-6">
+            <Link 
+              to="/create" 
+              className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
+            >
+              Create Trip
+            </Link>
+            <Link 
+              to="/dashboard" 
+              className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
+            >
+              My Trips
+            </Link>
+            
+            {/* User Section */}
+            {user && (
+              <div className="flex items-center gap-4 ml-4 pl-4 border-l border-gray-200">
+                <span className="text-sm text-gray-500 hidden sm:block">
+                  {user.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                  data-testid="logout-btn"
+                >
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-
-        {/* Logout Button */}
-        <AuthButton />
       </div>
     </nav>
   );
 }
-// // src/components/Navbar.jsx
-// import { Link } from 'react-router-dom';
-// import AuthButton from './AuthButton'; // ⬅️ import it here
-
-// const Navbar = () => (
-//   <nav className="flex items-center justify-between mb-4">
-//     {/* Left side: navigation links */}
-//     <div className="flex gap-4">
-//       <Link to="/dashboard" className="text-blue-700 hover:underline">Dashboard</Link>
-//       <Link to="/create" className="text-blue-700 hover:underline">Create Trip</Link>
-//     </div>
-
-//     {/* Right side: logout button */}
-//     <AuthButton />
-//   </nav>
-// );
-
-// export default Navbar;

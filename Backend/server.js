@@ -7,15 +7,7 @@ const geminiActivities = require('./routes/geminiactivities');
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      'http://localhost:5173',
-      process.env.FRONTEND_URL
-    ],
-    credentials: true
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 
@@ -27,7 +19,7 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-const PORT = process.env.PORT || 8989;
+const PORT = process.env.PORT || 8001;
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
