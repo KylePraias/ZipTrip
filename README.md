@@ -28,4 +28,4 @@ VITE_GOOGLE_MAPS_API_KEY=...
 
 Changelog:
 
-15/02/2026 - Revampled UI entirely and re-enabled AI functionality
+15/02/2026: Revampled UI entirely and re-enabled AI functionality
